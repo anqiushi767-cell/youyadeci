@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPIDEREYE // NOCTURNE</title>
+  <style>
+    * { margin: 0; padding: 0; }
+    html, body {
+      width: 100%; height: 100%;
+      background-color: #171717;
+      overflow: hidden;
+      cursor: none;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #spidereye {
+      position: absolute;
+      width: 35rem;
+      max-width: 80vw;
+    }
+  </style>
+</head>
+<body>
+  <img id="spidereye" alt="SPIDER EYE" />
+</body>
+<script>
+  // JIEJOE produce — B站: https://space.bilibili.com/3546390319860710
+  // 改编适配 NOCTURNE 夜光档案
+  const spiderEye = {
+    container: document.getElementById('spidereye'),
+    frames: [],
+    maxFrames: 73,
+    currentFrame: 0,
+    targetFrame: 0,
+    spiderTimer: null,
+    animationPlayer: null,
+
+    init() {
+      for (let i = 0; i <= this.maxFrames; i++) {
+        const frame = new Image();
+        frame.src = `spidereye/spider eye_${i}.webp`;
+        this.frames.push(frame);
+      }
+      this.container.src = this.frames[0].src;
+    },
+
+    rotate(x, y) {
+      clearTimeout(this.spiderTimer);
+      clearInterval(this.animationPlayer);
+
+      const cx = innerWidth / 2;
+      const cy = innerHeight / 2;
+      const nums = (x - cx) / (y - cy);
+      let angle;
+      if (y >= cy)
+        angle = (Math.atan(nums) * 180) / Math.PI + 90;
+      else
+        angle = 360 - 90 + (Math.atan(nums) * 180) / Math.PI;
+
+      this.targetFrame = Math.round((360 - angle) / 4.86) % (this.maxFrames + 1);
+      this.container.style.transform = `rotate(${-angle + 20}deg)`;
+
+      this.spiderTimer = setTimeout(() => {
+        this.animationPlayer = setInterval(() => this.move(), 30);
+      }, 100);
+    },
+
+    move() {
+      if (this.currentFrame === this.targetFrame) {
+        clearInterval(this.animationPlayer);
+        return;
+      }
+      const dir = this.currentFrame < this.targetFrame ? 1 : -1;
+      this.currentFrame += dir;
+      if (this.currentFrame > this.maxFrames) this.currentFrame = 0;
+      if (this.currentFrame < 0) this.currentFrame = this.maxFrames;
+      this.container.src = this.frames[this.currentFrame].src;
+    }
+  };
+
+  spiderEye.init();
+  window.addEventListener('mousemove', e => spiderEye.rotate(e.clientX, e.clientY));
+</script>
+</html>
