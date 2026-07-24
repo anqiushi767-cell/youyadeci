@@ -293,7 +293,7 @@ html[data-theme='light'] .tt-thumb { transform: translateX(26px); }
 .nav-clock b { color: var(--green); font-weight: 500; }
 
 /* 汉堡按钮（仅移动端显示） */
-.burger { display: none; background: none; border: 1px solid var(--line-strong); width: 40px; height: 40px; position: relative; z-index: 860; transition: border-color .3s; }
+.burger { display: none; background: none; border: 1px solid var(--line-strong); width: 40px; height: 40px; position: relative; z-index: 9110; transition: border-color .3s; }
 .burger span {
   position: absolute; left: 9px; right: 9px; height: 2px; background: var(--green);
   transition: transform .35s var(--ease-spring), opacity .25s, top .35s var(--ease-spring);
@@ -307,7 +307,7 @@ html[data-theme='light'] .tt-thumb { transform: translateX(26px); }
 
 /* 移动端全屏菜单 */
 .mobile-menu {
-  position: fixed; inset: 0; z-index: 850; background: var(--bg);
+  position: fixed; inset: 0; z-index: 9100; background: var(--bg);
   display: flex; flex-direction: column; justify-content: center;
   padding: 0 10vw; visibility: hidden;
 }
