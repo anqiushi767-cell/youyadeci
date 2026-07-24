@@ -16,7 +16,9 @@ const router = useRouter()
 const shutter = ref(null)
 router.beforeEach((to, from, next) => {
   if (to.path === from.path) return next()
-  shutter.value?.play(() => next())
+  // shutter ref 可能在首次导航时尚未挂载，此时跳过动画直接跳转
+  if (!shutter.value) return next()
+  shutter.value.play(() => next())
 })
 </script>
 
