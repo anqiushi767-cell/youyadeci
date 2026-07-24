@@ -2,9 +2,9 @@
 :root {
   --ease: cubic-bezier(.22, .61, .36, 1);
   --ease-spring: cubic-bezier(.34, 1.4, .44, 1);
-  --font-display: 'Trebuchet MS', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  --font-body: 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', system-ui, sans-serif;
-  --font-mono: 'Cascadia Code', 'Fira Code', 'Consolas', 'Courier New', monospace;
+  --font-display: 'Unbounded', 'Noto Sans SC', sans-serif;
+  --font-body: 'Noto Sans SC', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Noto Sans SC', monospace;
 }
 
 /* ==================== 2. 双主题变量（绿色主题贯穿） ==================== */
