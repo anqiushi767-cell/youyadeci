@@ -11,9 +11,9 @@ export const site = {
   owner: 'YZTXA',
   since: 2026,
   socials: [
-    { label: 'GITHUB', href: 'https://github.com/yourname' },
-    { label: 'INSTAGRAM', href: 'https://instagram.com/yourname' },
-    { label: 'EMAIL', href: 'mailto:you@example.com' }
+    { label: 'GITHUB', href: 'https://github.com/anqiushi767-cell/youyadeci' },
+    { label: 'BILIBILI', href: 'https://space.bilibili.com/3494359752247440' },
+    { label: 'EMAIL', href: '#' }
   ]
 }
 
