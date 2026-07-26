@@ -252,26 +252,27 @@ function hexToRgb(hex) {
 }
 
 const props = defineProps({
-  seed: 42,
-  scale: 4,
-  refraction: 0.01,
-  blur: 0.015,
-  liquid: 0.75,
-  speed: 0.3,
-  brightness: 2,
-  contrast: 0.5,
-  angle: 0,
-  fresnel: 1,
-  lightColor: '#ffffff',
-  darkColor: '#000000',
-  patternSharpness: 1,
-  waveAmplitude: 1,
-  noiseScale: 0.5,
-  chromaticSpread: 2,
-  mouseAnimation: false,
-  distortion: 1,
-  contour: 0.2,
-  tintColor: '#feb3ff'
+  imageSrc: { type: String, required: true },
+  seed: { type: Number, default: 42 },
+  scale: { type: Number, default: 4 },
+  refraction: { type: Number, default: 0.01 },
+  blur: { type: Number, default: 0.015 },
+  liquid: { type: Number, default: 0.75 },
+  speed: { type: Number, default: 0.3 },
+  brightness: { type: Number, default: 2 },
+  contrast: { type: Number, default: 0.5 },
+  angle: { type: Number, default: 0 },
+  fresnel: { type: Number, default: 1 },
+  lightColor: { type: String, default: '#ffffff' },
+  darkColor: { type: String, default: '#000000' },
+  patternSharpness: { type: Number, default: 1 },
+  waveAmplitude: { type: Number, default: 1 },
+  noiseScale: { type: Number, default: 0.5 },
+  chromaticSpread: { type: Number, default: 2 },
+  mouseAnimation: { type: Boolean, default: false },
+  distortion: { type: Number, default: 1 },
+  contour: { type: Number, default: 0.2 },
+  tintColor: { type: String, default: '#feb3ff' }
 });
 
 const canvasRef = ref(null);
@@ -281,14 +282,14 @@ const uniformsRef = ref({});
 const textureRef = ref(null);
 const animTimeRef = ref(0);
 const lastTimeRef = ref(0);
-const rafRef = ref<number | null>(null);
+const rafRef = ref(null);
 const imgDataRef = ref(null);
 const speedRef = ref(props.speed);
 const mouseRef = ref({ x: 0.5, y: 0.5, targetX: 0.5, targetY: 0.5 });
 const mouseAnimRef = ref(props.mouseAnimation);
 
-const ready = ref<boolean>(false);
-const textureReady = ref<boolean>(false);
+const ready = ref(false);
+const textureReady = ref(false);
 
 watch(
   () => props.speed,

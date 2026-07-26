@@ -1,8 +1,8 @@
 <template>
-  <h2 ref="containerRef" class="sr-container" :class="containerClassName">
-    <p class="sr-text" :class="textClassName">
+  <h2 ref="containerRef" :class="containerClassName" style="margin:1.25rem 0">
+    <p :class="textClassName" style="font-size:clamp(1.6rem,4vw,3rem);line-height:1.5;font-weight:600">
       <template v-for="(segment, index) in splitText" :key="index">
-        <span v-if="segment.isWord" class="sr-word">{{ segment.text }}</span>
+        <span v-if="segment.isWord" class="scroll-reveal-word word" style="display:inline-block">{{ segment.text }}</span>
         <template v-else>{{ segment.text }}</template>
       </template>
     </p>
@@ -16,17 +16,16 @@ import { computed, nextTick, onMounted, onUnmounted, useSlots, useTemplateRef } 
 
 gsap.registerPlugin(ScrollTrigger);
 
-
 const props = defineProps({
-  scrollContainerRef: null,
-  enableBlur: true,
-  baseOpacity: 0.1,
-  baseRotation: 3,
-  blurStrength: 4,
-  containerClassName: '',
-  textClassName: '',
-  rotationEnd: 'bottom bottom',
-  wordAnimationEnd: 'bottom bottom'
+  scrollContainerRef: { default: null },
+  enableBlur: { type: Boolean, default: true },
+  baseOpacity: { type: Number, default: 0.1 },
+  baseRotation: { type: Number, default: 3 },
+  blurStrength: { type: Number, default: 4 },
+  containerClassName: { type: String, default: '' },
+  textClassName: { type: String, default: '' },
+  rotationEnd: { type: String, default: 'bottom bottom' },
+  wordAnimationEnd: { type: String, default: 'bottom bottom' }
 });
 
 const slots = useSlots();
@@ -38,8 +37,7 @@ const text = computed(() => {
     nodes
       .map(vnode => {
         if (typeof vnode.children === 'string') return vnode.children;
-        if (Array.isArray(vnode.children))
-          return extract(vnode.children);
+        if (Array.isArray(vnode.children)) return extract(vnode.children);
         return '';
       })
       .join('');
@@ -56,19 +54,18 @@ const splitText = computed(() =>
 function resolveScroller(ref) {
   if (!ref) return window;
   if (ref instanceof HTMLElement) return ref;
-  return (ref).value ?? window;
+  return ref.value ?? window;
 }
 
 let tweens = [];
 
 onMounted(async () => {
   await nextTick();
-
   const el = containerRef.value;
   if (!el) return;
 
   const scroller = resolveScroller(props.scrollContainerRef);
-  const wordElements = el.querySelectorAll('.sr-word');
+  const wordElements = el.querySelectorAll('.scroll-reveal-word');
 
   tweens.push(
     gsap.fromTo(
@@ -82,7 +79,7 @@ onMounted(async () => {
           scroller,
           start: 'top bottom',
           end: props.rotationEnd,
-          scrub: true
+          scrub: 1.5
         }
       }
     )
@@ -101,7 +98,7 @@ onMounted(async () => {
           scroller,
           start: 'top bottom-=20%',
           end: props.wordAnimationEnd,
-          scrub: true
+          scrub: 1.5
         }
       }
     )
@@ -121,25 +118,18 @@ onMounted(async () => {
             scroller,
             start: 'top bottom-=20%',
             end: props.wordAnimationEnd,
-            scrub: true
+            scrub: 1.5
           }
         }
       )
     );
   }
+
+  requestAnimationFrame(() => { ScrollTrigger.refresh(); });
 });
 
 onUnmounted(() => {
-  tweens.forEach(t => {
-    t.scrollTrigger?.kill();
-    t.kill();
-  });
+  tweens.forEach(t => { t.scrollTrigger?.kill(); t.kill(); });
   tweens = [];
 });
 </script>
-
-<style scoped>
-.sr-container { margin: 1.25rem 0; }
-.sr-text { font-size: clamp(1.6rem, 4vw, 3rem); line-height: 1.5; font-weight: 600; }
-.sr-word { display: inline-block; }
-</style>
