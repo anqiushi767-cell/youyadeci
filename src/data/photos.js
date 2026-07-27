@@ -47,9 +47,9 @@ export const photos = [
   { id: 15, album: 'film',   title: '站台告别', date: '2025-09-14', ratio: '4/3', src: 'https://cloudflare-imgbed-qm6.pages.dev/file/1784987737867_img-17762542494207ecbe7c1548c985c94011681c810efd9225e5b4f4f80aa3fbf4938a33020ecea.jpg' },
   { id: 16, album: 'human',  title: '棋局老人', date: '2026-05-25', ratio: '4/3', src: 'https://cloudflare-imgbed-qm6.pages.dev/file/1784987712724_img-17762542861896bb13071f60064e66f017f22e16f5bb1fe85e072fdbb477e7535f8ceb946fefb.jpg' },
   { id: 17, album: 'human',  title: '滑板少年', date: '2026-04-27', ratio: '4/3', src: 'https://cloudflare-imgbed-qm6.pages.dev/file/1784987615648_Screenshot_2024-08-11-13-55-05-800_lockscreen.jpg' },
-  P(18, 'human',  '窗边剪影',     '2026-03-08', 'n18', '3/4'),
-  P(19, 'human',  '夜市摊主',     '2026-02-14', 'n19', '1/1'),
-  P(20, 'human',  '雨中同行',     '2026-01-09', 'n20', '4/5')
+  { id: 18, album: 'human', title: '窗边剪影', date: '2026-03-08', ratio: '4/3', src: 'https://cloudflare-imgbed-qm6.pages.dev/file/1784987053808_Screenshot_20260528_111526.jpg' },
+  { id: 19, album: 'human', title: '夜市摊主', date: '2026-02-14', ratio: '4/3', src: 'https://cloudflare-imgbed-qm6.pages.dev/file/1784986976597_Camera_XHS_1782740946026.jpg' },
+  { id: 20, album: 'human', title: '雨中同行', date: '2026-01-09', ratio: '4/3', src: 'https://cloudflare-imgbed-qm6.pages.dev/file/1784783488277_IMG_20260714_182245.jpg' },
 ]
 
 export const albumById = id => albums.find(a => a.id === id)
