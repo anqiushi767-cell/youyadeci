@@ -50,6 +50,7 @@ export const photos = [
   { id: 18, album: 'human', title: '窗边剪影', date: '2026-03-08', ratio: '4/3', src: 'https://cloudflare-imgbed-qm6.pages.dev/file/1784987053808_Screenshot_20260528_111526.jpg' },
   { id: 19, album: 'human', title: '夜市摊主', date: '2026-02-14', ratio: '4/3', src: 'https://cloudflare-imgbed-qm6.pages.dev/file/1784986976597_Camera_XHS_1782740946026.jpg' },
   { id: 20, album: 'human', title: '雨中同行', date: '2026-01-09', ratio: '4/3', src: 'https://cloudflare-imgbed-qm6.pages.dev/file/1784783488277_IMG_20260714_182245.jpg' },
+  { id: 21, album: 'nature', title: '纳瓦霍保留地', date: '2026-07-28', ratio: '16/9', src: 'https://cn.bing.com/th?id=OHR.NavajoNation_ZH-CN9274387505_UHD.jpg&rf=LaDigue_1920x1080.jpg&pid=hp' },
 ]
 
 export const albumById = id => albums.find(a => a.id === id)
