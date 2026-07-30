@@ -51,6 +51,11 @@ export const photos = [
   { id: 19, album: 'human', title: '夜市摊主', date: '2026-02-14', ratio: '4/3', src: 'https://cloudflare-imgbed-qm6.pages.dev/file/1784986976597_Camera_XHS_1782740946026.jpg' },
   { id: 20, album: 'human', title: '雨中同行', date: '2026-01-09', ratio: '4/3', src: 'https://cloudflare-imgbed-qm6.pages.dev/file/1784783488277_IMG_20260714_182245.jpg' },
   { id: 21, album: 'nature', title: '纳瓦霍保留地', date: '2026-07-28', ratio: '16/9', src: 'https://cn.bing.com/th?id=OHR.NavajoNation_ZH-CN9274387505_UHD.jpg&rf=LaDigue_1920x1080.jpg&pid=hp' },
+  { id: 22, album: 'human', title: '街角', date: '2026-07-28', ratio: '4/3', src: 'https://cloudflare-imgbed-qm6.pages.dev/file/1785329451530_wx_camera_1784959553586.jpg' },
+  { id: 23, album: 'human', title: '午后', date: '2026-07-22', ratio: '4/3', src: 'https://cloudflare-imgbed-qm6.pages.dev/file/1785329476822_IMG_20260722_093126.jpg' },
+  { id: 24, album: 'human', title: '光影', date: '2026-07-28', ratio: '4/3', src: 'https://cloudflare-imgbed-qm6.pages.dev/file/1785329509242_img-1784941082631f183d10fbcf3409445b0e6b587173d66c08043eb0a12a8d3b47f8bc73e458c06.jpg' },
+  { id: 25, album: 'human', title: '日常', date: '2026-07-06', ratio: '4/3', src: 'https://cloudflare-imgbed-qm6.pages.dev/file/1785329563180_IMG_20260706_101922.jpg' },
+  { id: 26, album: 'human', title: '傍晚', date: '2026-06-09', ratio: '4/3', src: 'https://cloudflare-imgbed-qm6.pages.dev/file/1785329656407_IMG_20260609_203716.jpg' },
 ]
 
 export const albumById = id => albums.find(a => a.id === id)
