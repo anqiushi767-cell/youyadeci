@@ -3,12 +3,26 @@ import { useRouter } from 'vue-router'
 import MetallicPaint from '../components/MetallicPaint.vue'
 import ScrollFloat from '../components/ScrollFloat.vue'
 import ScrollReveal from '../components/ScrollReveal.vue'
+import SplashCursor from '../components/SplashCursor.vue'
 
 const router = useRouter()
+
+const splashProps = {
+  SIM_RESOLUTION: 128,
+  DYE_RESOLUTION: 1024,
+  SPLAT_FORCE: 5000,
+  DENSITY_DISSIPATION: 4,
+  VELOCITY_DISSIPATION: 2.5,
+  COLOR_UPDATE_SPEED: 8,
+  SHADING: true,
+  RAINBOW_MODE: false,
+  COLOR: '#39ff88'
+}
 </script>
 
 <template>
   <div class="metal-page">
+    <SplashCursor v-bind="splashProps" />
     <!-- Section 1: 金属漆字母 N -->
     <section class="metal-hero">
       <MetallicPaint

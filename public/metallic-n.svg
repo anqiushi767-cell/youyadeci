@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <rect width="512" height="512" fill="transparent"/>
-  <!-- Bold geometric N using filled paths -->
-  <path d="M128 384L128 128L192 128L192 290L352 128L384 128L384 384L320 384L320 222L160 384Z" fill="#000000"/>
+  <text x="50%" y="52%" dominant-baseline="central" text-anchor="middle"
+    font-family="Haettenschweiler, 'Arial Black', Impact, sans-serif" font-weight="400" font-size="400" font-stretch="condensed"
+    fill="#000000">85</text>
 </svg>

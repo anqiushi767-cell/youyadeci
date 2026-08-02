@@ -56,6 +56,7 @@ export const photos = [
   { id: 24, album: 'human', title: '光影', date: '2026-07-28', ratio: '4/3', src: 'https://cloudflare-imgbed-qm6.pages.dev/file/1785329509242_img-1784941082631f183d10fbcf3409445b0e6b587173d66c08043eb0a12a8d3b47f8bc73e458c06.jpg' },
   { id: 25, album: 'human', title: '日常', date: '2026-07-06', ratio: '4/3', src: 'https://cloudflare-imgbed-qm6.pages.dev/file/1785329563180_IMG_20260706_101922.jpg' },
   { id: 26, album: 'human', title: '傍晚', date: '2026-06-09', ratio: '4/3', src: 'https://cloudflare-imgbed-qm6.pages.dev/file/1785329656407_IMG_20260609_203716.jpg' },
+  { id: 27, album: 'nature', title: '弗吉尼亚小径', date: '2026-07-29', ratio: '16/9', src: 'https://cn.bing.com/th?id=OHR.VirginiaTrail_ZH-CN2299501599_UHD.jpg&rf=LaDigue_1920x1080.jpg&pid=hp' },
 ]
 
 export const albumById = id => albums.find(a => a.id === id)
