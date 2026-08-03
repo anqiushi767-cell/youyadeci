@@ -596,3 +596,26 @@ html[data-theme='light'] .tt-thumb { transform: translateX(26px); }
   body { background-attachment: scroll; }
   .marquee-track { animation-duration: 16s; }
 }
+
+/* ===== 浏览器升级提示 ===== */
+.browser-tip {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 16px;
+  padding: 12px 20px;
+  background: var(--bg); border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 13px; color: var(--text);
+  box-shadow: 0 8px 32px rgba(0,0,0,.4);
+  z-index: 9999; max-width: 600px;
+}
+.browser-tip a {
+  color: var(--green); font-weight: 600; white-space: nowrap;
+  text-decoration: none;
+}
+.browser-tip a:hover { text-decoration: underline; }
+.browser-tip button {
+  background: none; border: none; color: var(--muted); font-size: 16px;
+  cursor: pointer; padding: 0 4px; line-height: 1;
+}
+.toast-enter-active, .toast-leave-active { transition: all .35s var(--ease); }
+.toast-enter-from, .toast-leave-to { opacity: 0; transform: translateX(-50%) translateY(20px); }
