@@ -14,10 +14,9 @@ const showBrowserTip = ref(false)
 
 onMounted(() => {
   const ua = navigator.userAgent
-  // 国产套壳浏览器
   const domestic = /QQBrowser|MQQBrowser|360SE|360EE|Sogou|SE\s|MetaSr|UCBrowser|UCWEB|LieBao|baidubrowser/i.test(ua)
-  // 旧版 Chrome (< 100) 或 Microsoft Edge 旧内核
-  const oldChrome = /Chrome\/(\d+)/.test(ua) && parseInt(RegExp.$1) < 100
+  const m = ua.match(/Chrome\/(\d+)/)
+  const oldChrome = m ? parseInt(m[1]) < 100 : false
   if (domestic || oldChrome) showBrowserTip.value = true
 })
 
