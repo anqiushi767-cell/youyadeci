@@ -5,7 +5,8 @@ const routes = [
   { path: '/gallery', name: 'gallery', component: () => import('../views/GalleryView.vue'), meta: { title: '照片展示区' } },
   { path: '/archive', name: 'archive', component: () => import('../views/ArchiveView.vue'), meta: { title: '目录' } },
   { path: '/:pathMatch(.*)*', name: 'notfound', component: () => import('../views/NotFoundView.vue'), meta: { title: '底片未找到' } },
-  { path: '/metallic', name: 'metallic', component: () => import('../views/MetallicView.vue'), meta: { title: '金属漆' } }
+  { path: '/metallic', name: 'metallic', component: () => import('../views/MetallicView.vue'), meta: { title: '金属漆' } },
+  { path: '/laser', name: 'laser', component: () => import('../views/LaserView.vue'), meta: { title: '激光实验室' } }
 ]
 
 const router = createRouter({
