@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { albums, photosOf, countOf } from '../data/photos'
 import PhotoCard from '../components/PhotoCard.vue'
 import PhotoLightbox from '../components/PhotoLightbox.vue'
@@ -10,7 +10,41 @@ useReveal(root)
 
 const lbList = ref([]), lbIndex = ref(0), lbShow = ref(false)
 function open(p, list) { lbList.value = list; lbIndex.value = list.indexOf(p); lbShow.value = true }
-const latest = photosOf('').slice(0, 5)
+const latest = photosOf('').slice(-5).reverse()
+const latestVert = latest.filter(p => p.ratio !== '16/9')
+const latestHorz = latest.filter(p => p.ratio === '16/9')
+
+// 竖图高度对齐右列（两张横图叠高），宽度按各自比例反推，避免 flex 压缩裁切
+const thumbsWrap = ref(null)
+let resizeTimer = 0
+function alignThumbHeights() {
+  const wrap = thumbsWrap.value
+  if (!wrap) return
+  const wideCol = wrap.querySelector('.thumb-col-wide')
+  const row = wrap.querySelector('.thumb-row')
+  if (!wideCol || !row || !wideCol.offsetHeight) return
+  const totalH = wideCol.offsetHeight
+  row.querySelectorAll('.photo-card').forEach(card => {
+    const meta = card.querySelector('.photo-meta')
+    const frame = card.querySelector('.photo-frame')
+    if (!meta || !frame) return
+    const frameH = totalH - meta.offsetHeight
+    if (frameH <= 0) return
+    const [w, h] = (frame.style.aspectRatio || '3/4').split('/').map(Number)
+    if (w && h) frame.style.width = frameH * w / h + 'px'
+  })
+}
+onMounted(() => {
+  alignThumbHeights()
+  window.addEventListener('resize', onResize)
+})
+function onResize() {
+  clearTimeout(resizeTimer)
+  resizeTimer = setTimeout(alignThumbHeights, 150)
+}
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', onResize)
+})
 </script>
 
 <template>
@@ -44,12 +78,21 @@ const latest = photosOf('').slice(0, 5)
       <h2>最近入库</h2>
       <span class="rule"></span>
     </div>
-    <div class="album-thumbs">
-      <PhotoCard
-        v-for="(p, i) in latest" :key="p.id"
-        :photo="p" class="reveal" :style="{ '--delay': `${i * 0.07}s` }"
-        @open="open(p, latest)"
-      />
+    <div class="album-thumbs" ref="thumbsWrap">
+      <div class="thumb-row">
+        <PhotoCard
+          v-for="(p, i) in latestVert" :key="p.id"
+          :photo="p" class="reveal" :style="{ '--delay': `${i * 0.07}s` }"
+          @open="open(p, latest)"
+        />
+      </div>
+      <div class="thumb-col-wide">
+        <PhotoCard
+          v-for="(p, i) in latestHorz" :key="p.id"
+          :photo="p" class="reveal" :style="{ '--delay': `${(i + latestVert.length) * 0.07}s` }"
+          @open="open(p, latest)"
+        />
+      </div>
     </div>
 
     <PhotoLightbox

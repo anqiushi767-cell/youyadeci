@@ -373,6 +373,7 @@ html[data-theme='light'] .tt-thumb { transform: translateX(26px); }
 .photo-card.pressed { transform: scale(.97); border-color: var(--green); } /* 触控按压反馈 */
 .photo-frame { position: relative; overflow: hidden; }
 .photo-frame img {
+  position: absolute; inset: 0;
   width: 100%; height: 100%; object-fit: cover;
   filter: var(--img-filter);
   transition: transform .6s var(--ease), filter .4s, opacity .6s var(--ease);
@@ -530,8 +531,13 @@ html[data-theme='light'] .tt-thumb { transform: translateX(26px); }
 .album-count { font-family: var(--font-mono); font-size: 13px; color: var(--green); white-space: nowrap; }
 .album-arrow { font-family: var(--font-mono); font-size: 22px; color: var(--muted); transition: transform .35s var(--ease-spring), color .3s; }
 .album-row:hover .album-arrow { transform: translateX(8px); color: var(--green); }
-.album-thumbs { display: flex; gap: 10px; margin-top: 60px; flex-wrap: wrap; padding-bottom: 80px; }
-.album-thumbs .photo-card { width: 200px; margin: 0; }
+.album-thumbs { display: flex; gap: 14px; margin-top: 60px; padding-bottom: 80px; align-items: stretch; }
+.thumb-row { display: flex; gap: 10px; flex-shrink: 0; }
+.thumb-row .photo-card { width: auto; margin: 0; height: 100%; display: flex; flex-direction: column; align-items: flex-start; }
+.thumb-row .photo-frame { flex: 1; width: auto; min-width: 0; }
+.thumb-row .photo-meta { width: 100%; flex-shrink: 0; }
+.thumb-col-wide { display: flex; flex-direction: column; gap: 10px; width: 320px; flex-shrink: 0; }
+.thumb-col-wide .photo-card { width: 100%; margin: 0; }
 
 /* ==================== 18. 页脚 ==================== */
 .footer { border-top: 1px solid var(--line); margin-top: 40px; background: var(--panel-2); transition: background .6s, border-color .6s; }
@@ -580,7 +586,10 @@ html[data-theme='light'] .tt-thumb { transform: translateX(26px); }
   .album-row { grid-template-columns: 44px 1fr auto; gap: 12px; padding: 22px 12px; }
   .album-row:hover { padding-left: 18px; }
   .album-arrow { display: none; }
-  .album-thumbs .photo-card { width: calc(50% - 5px); }
+  .album-thumbs { gap: 10px; flex-direction: column; }
+  .thumb-row { gap: 8px; }
+  .thumb-row .photo-card { width: calc(33.33% - 6px); }
+  .thumb-col-wide { width: 100%; gap: 8px; }
 
   /* 灯箱：更大的触控热区 + 底部安全区 */
   .lb-btn { width: 48px; height: 48px; }
